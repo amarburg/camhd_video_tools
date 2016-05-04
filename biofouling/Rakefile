@@ -1,0 +1,16 @@
+require 'pathname'
+
+root_dir = Pathname.new(__FILE__).dirname
+$:.unshift root_dir.parent.join('lib')
+require 'source_video'
+
+video_dir = Pathname.new('/Volumes/Annex/Videos/CamHD/')
+videos = Pathname.glob( video_dir.join("**","*.mov") ).map { |video_file| SourceVideo.new( video_dir, video_file ) }
+
+snippet_root_dir = root_dir.join('snippets')
+desc "Make snippets from all clips"
+task :snippets => videos.map { |v| v.snippet_task( snippet_root_dir ) }
+
+frames_root_dir = root_dir.join('frames')
+desc "Make frames from all snippets"
+task :frames => videos.map { |v| v.frames_task( frames_root_dir ) }
