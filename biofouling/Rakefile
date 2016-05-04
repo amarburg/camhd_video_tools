@@ -14,3 +14,7 @@ task :snippets => videos.map { |v| v.snippet_task( snippet_root_dir ) }
 frames_root_dir = root_dir.join('frames')
 desc "Make frames from all snippets"
 task :frames => videos.map { |v| v.frames_task( frames_root_dir ) }
+
+subset_root_dir = root_dir.join('subsets')
+desc "Make subsets from all frames"
+task :subsets => videos.map { |v| v.subset_task( subset_root_dir ) }
