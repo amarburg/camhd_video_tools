@@ -25,3 +25,7 @@ include_directories( ${OpenCV_INCLUDE_DIRS} )
 add_executable(every_frame EveryFrame.cpp )
 target_link_libraries( every_frame
 						${OpenCV_LIBRARIES})
+
+add_executable(snippet Snippet.cpp )
+target_link_libraries( snippet
+						${OpenCV_LIBRARIES})
